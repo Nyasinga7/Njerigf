@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Little Magic ✨</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: "Georgia", serif;
+      background: radial-gradient(circle at top, #2b1055, #000);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 20px 0;
+    }
+
+    img {
+      height: 200px;
+    }
+
+    #buttons {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      margin-top: 30px;
+    }
+
+    #yes-btn {
+      background: linear-gradient(45deg, #1aff00, #00cc66);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      cursor: pointer;
+      transition: font-size 0.3s ease;
+    }
+
+    #no-btn {
+      background: linear-gradient(45deg, #ff0000, #cc0000);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: top 0.5s ease, left 0.5s ease;
+    }
+
+    .glow {
+      text-shadow: 0 0 10px #fff, 0 0 20px #c77dff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Magical intro -->
+  <img
+    src="https://media.tenor.com/2roX3uxz_68AAAAi/magic-sparkles.gif"
+    alt="Magical sparkles"
+  />
+
+  <h1 class="glow">Faith, will you be my girlfriend?</h1>
+
+  <div id="buttons">
+    <button id="yes-btn">Yes</button>
+    <button id="no-btn">No</button>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yes-btn");
+    const noBtn = document.getElementById("no-btn");
+
+    let noCount = 0;
+
+    const noPhrases = [
+      "No",
+      "Are you sure?",
+      "Really sure?",
+      "Think again!",
+      "Last chance!",
+      "Surely not?",
+      "This spell can be undone!",
+      "Have a heart!",
+      "Change of heart?",
+      "Final answer?",
+      "You're resisting the magic 😭"
+    ];
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <img
+          src="https://media.tenor.com/3h6Ykz7g9vQAAAAi/magic-wand-sparkle.gif"
+          alt="Magic spell"
+        />
+        <h1 class="glow">
+          ✨ The girl from 4th Street, Faith, said Yes 💖 ✨
+        </h1>
+      `;
+    });
+
+    noBtn.addEventListener("click", () => {
+      noCount++;
+      noBtn.textContent =
+        noPhrases[Math.min(noCount, noPhrases.length - 1)];
+
+      // Move No button like it's cursed
+      const top = Math.random() * 70;
+      const left = Math.random() * 70;
+      noBtn.style.top = top + "%";
+      noBtn.style.left = left + "%";
+
+      // Grow Yes button
+      yesBtn.style.fontSize = 16 + noCount * 4 + "px";
+    });
+  </script>
+
+</body>
+</html>
