@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A Little Magic ✨</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #2b1055, #000);
+      color: white;
+      font-family: Georgia, serif;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      text-shadow: 0 0 10px #c77dff, 0 0 20px #fff;
+      margin-bottom: 30px;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: float 5s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 0.2; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-300px); opacity: 0; }
+    }
+
+    #buttons {
+      position: relative;
+      width: 300px;
+      height: 150px;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #yes {
+      background: #2ecc71;
+    }
+
+    #no {
+      background: #e74c3c;
+      color: white;
+      position: absolute;
+      top: 60px;
+      left: 100px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Faith, will you be my girlfriend?</h1>
+
+  <div id="buttons">
+    <button id="yes">Yes</button>
+    <button id="no">No</button>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+
+    let count = 0;
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 200;
+      const y = Math.random() * 100;
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+
+      count++;
+      yesBtn.style.fontSize = (16 + count * 3) + "px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <h1>
+          ✨ To the girl from 4th Street, Faith, said Yes 💖 ✨
+        </h1>
+      `;
+    });
+
+    // create sparkles
+    for (let i = 0; i < 25; i++) {
+      const s = document.createElement("div");
+      s.className = "sparkle";
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.top = Math.random() * 100 + "vh";
+      s.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(s);
+    }
+  </script>
+
+</body>
+</html>
